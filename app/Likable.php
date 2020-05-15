@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 trait Likable
 {
@@ -18,8 +19,15 @@ trait Likable
 
     public function like($user = null, $liked = true)
     {
+        $liked_user = $user ? $user : current_user();
+
+        if($this->likes()->where('liked', $liked)->get()->contains('user_id', $liked_user->id)){
+            $this->likes()->where('liked', $liked)->where('user_id', $liked_user->id)->delete();
+            return ;
+        }
+
         $this->likes()->updateOrCreate([
-            'user_id'   => $user ? $user->id : current_user()->id,
+            'user_id'   => $liked_user->id,
         ], [
             'liked'     => $liked
         ]);

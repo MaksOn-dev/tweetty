@@ -1,7 +1,7 @@
 <x-app>
     <header class="mb-4">
         <div class="wrapper relative">
-            <img class="rounded-xl h-56 w-full mb-4" src="/images/profile-banner.png" alt="profile banner">
+            <img class="rounded-xl h-56 w-full mb-4" src="{{ $user->banner }}" alt="profile banner">
             <img class="rounded-full absolute" src="{{ $user->avatar }}" alt="user icon" width="120px" style="left: calc(50% - 60px);bottom:-60px;">
         </div>
 

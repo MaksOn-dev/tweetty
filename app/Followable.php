@@ -9,6 +9,7 @@ trait Followable
         if($this->following($user)){
             return ;
         }
+        request()->session()->flash('success', 'Perfect');
         return $this->follows()->save($user);
     }
 
@@ -16,6 +17,7 @@ trait Followable
     {
         if($this->following($user)){
             $this->follows()->where('following_user_id', $user->id)->detach();
+            request()->session()->flash('success', 'Perfect');
         }
     }
 

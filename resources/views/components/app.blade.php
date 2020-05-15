@@ -1,6 +1,6 @@
 <x-master>
     <main>
-        <div class="lg:flex">
+        <div class="lg:flex justify-around">
             @auth()
                 <div class="lg:w-32">
                     @include('_sidebar-links')

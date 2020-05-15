@@ -5,14 +5,22 @@
         </a>
     </div>
 
-    <div>
+    <div class="flex-grow">
         <a href="{{ route('profile', $tweet->user) }}">
             <h5 class="font-bold mb-3">{{ $tweet->user->name }}</h5>
         </a>
         <p class="text-sm mb-3">
             {{ $tweet->body }}
         </p>
-
         <x-like-buttons :tweet="$tweet"/>
+    </div>
+
+    <div class="flex flex-col justify-between">
+        <form class="text-right" method="POST" action="/tweets/{{ $tweet->id }}">
+            @csrf
+            @method('DELETE')
+            <button class="text-medium" type="submit">x</button>
+        </form>
+        <p class="text-sm text-gray-500">{{ $tweet->getPublishTime() }}</p>
     </div>
 </div>

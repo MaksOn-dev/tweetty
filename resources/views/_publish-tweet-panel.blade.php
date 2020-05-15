@@ -2,7 +2,7 @@
     <form method="POST" action="/tweets">
         @csrf
 
-        <textarea class="" name="body" id="body" placeholder="Whats up man?"></textarea>
+        <textarea class="w-full" name="body" id="body" placeholder="Whats up man?"></textarea>
         @error('body')
             <p class="text-red-500 text-sm">{{ $message }}</p>
         @enderror

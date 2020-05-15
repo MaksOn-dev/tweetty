@@ -11,13 +11,16 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/toastr.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito" />
 
     <!-- Styles -->
-    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/toastr.css') }}"  >
 </head>
 <body>
     <div id="app">
@@ -37,5 +40,25 @@
     </div>
 
     <script src="http://unpkg.com/turbolinks"></script>
+
+    <!-- Notifications ---------------------------------------------------------------------------->
+    <script>
+        toastr.options.positionClass = 'toast-bottom-right';
+        @if(Session::has('success'))
+            toastr.success("{{ Session::get('success') }}");
+        @endif
+
+        @if(Session::has('info'))
+            toastr.info("{{ Session::get('info') }}");
+        @endif
+
+        @if(Session::has('warning'))
+            toastr.warning("{{ Session::get('warning') }}");
+        @endif
+
+        @if(Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
+        @endif
+    </script>
 </body>
 </html>
